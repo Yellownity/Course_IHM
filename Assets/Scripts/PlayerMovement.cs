@@ -6,7 +6,9 @@ using UnityEngine.Rendering.Universal.Internal;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rigidbody;
-    [SerializeField] float speed;
+    [SerializeField] float speedForward;
+    [SerializeField] float speedBackward;
+    [SerializeField] float speedTurn;
     private float forward;
 
     private float turn;
@@ -20,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Turn(turn);
-        this.rigidbody.AddForce(this.transform.forward *forward* speed);
+        Move();
     }
     public void putTurn(float input)
     {
@@ -30,12 +32,18 @@ public class PlayerMovement : MonoBehaviour
     {
         forward = input;
     }
-    public void Turn(float input)
+    private void Turn(float input)
     {
-        this.transform.Rotate(transform.up, input);
+        this.transform.Rotate(transform.up, input*speedTurn);
 
         //float getpadright = Mathf.Sign((gamepad.rightStick.ReadValue().x));
         //Vector3 move = transform.rotation*(new Vector3(0, 0, getpadright)) * 20 ;
         //this.rigidbody.AddForce(move);
     }
+    private void Move()
+    {
+        float speed = forward > 0 ? speedForward : speedBackward;
+        this.rigidbody.AddForce(this.transform.forward * forward * speed);
+    }
+
 }
