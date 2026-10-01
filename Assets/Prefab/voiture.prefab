@@ -181,27 +181,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 605037817038408849}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: Left_Right
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 6c544017-15af-4987-83fb-15f5c5b4d2d7
     m_ActionName: 'Player/Right/left[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]'
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a0b5078e-6635-437c-aa07-de5850f417c7
+    m_ActionName: 'Player/Forward[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]'
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605037817038408849}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: Forward
-        m_Mode: 0
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LapManager, Assembly-CSharp
+        m_MethodName: OnRespawnPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -210,12 +202,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a0b5078e-6635-437c-aa07-de5850f417c7
-    m_ActionName: 'Player/Forward[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: b2c059f3-65ff-44f6-b1b5-80664bcce6b3
-    m_ActionName: 'Player/Respawn[/Keyboard/alt]'
+    m_ActionName: 'Player/Respawn[/XInputControllerWindows/buttonWest,/Keyboard/alt]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -233,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e10f549cdb314da432a172b96fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speedForward: 0
-  speedBackward: 0
-  speedTurn: 0
+  speedForward: 5
+  speedBackward: 2
+  speedTurn: 0.2
   respawnPoint: {fileID: 0}

@@ -31,10 +31,4 @@ public class InputController : MonoBehaviour
         float forwardValue = forwardAction.ReadValue<float>();
         playerMovement.putForward(forwardValue);
     }
-
-
-    public void OnRespawnPressed()//on peut même envoyer le signal dans un autre script que le input controller
-    {
-        playerMovement.Respawn();//methode à changer de place
-    }
 }

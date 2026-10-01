@@ -1,16 +1,20 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LapManager : MonoBehaviour
 {
-    [SerializeField] private int totalCheckpoints = 3;
+    [SerializeField] private List<GameObject> checkpoints;
     private int currentCheckpoint = 0;
+    private int totalCheckpoints;
 
     public static event EventHandler onLapFinishedEvent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Checkpoint.onCheckpointEvent += HandleCheckpointReached;
+        totalCheckpoints = checkpoints.Count;
     }
 
     // Update is called once per frame
@@ -30,5 +34,13 @@ public class LapManager : MonoBehaviour
                 onLapFinishedEvent(this, EventArgs.Empty);
             }
         }
+    }
+
+    public void OnRespawnPressed()
+    {
+        Transform player = FindFirstObjectByType<PlayerMovement>().transform;
+        player.position = checkpoints[currentCheckpoint].transform.position;
+        player.rotation = checkpoints[currentCheckpoint].transform.rotation;
+        player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 }
