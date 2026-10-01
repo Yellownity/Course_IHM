@@ -10,25 +10,25 @@ public class InputController : MonoBehaviour
 
     float left_right_input;
     float forward;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    InputAction rightLeftAction;
+    InputAction forwardAction;
+
+    private void Start()
     {
+        var playerInput = GetComponent<PlayerInput>();
+        rightLeftAction = playerInput.actions.FindAction("Player/Right_Left");
+        forwardAction = playerInput.actions.FindAction("Player/Forward");
+
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    public void Left_Right(InputAction.CallbackContext context)
-    {
-        left_right_input = context.ReadValue<float>();
-        playerMovement.putTurn(left_right_input);
-    }
-
-    public void Forward(InputAction.CallbackContext context)
-    {
-        forward = context.ReadValue <float>();
-        playerMovement.putForward(forward);
-    }
-    // Update is called once per frame
     void Update()
     {
+        float turnValue = rightLeftAction.ReadValue<float>();
+        playerMovement.putTurn(turnValue);
+
+        float forwardValue = forwardAction.ReadValue<float>();
+        playerMovement.putForward(forwardValue);
     }
 }

@@ -1419,6 +1419,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: speedTurn
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: speedForward
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: speedBackward
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
