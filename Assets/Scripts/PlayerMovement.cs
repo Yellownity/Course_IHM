@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal.Internal;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedForward;
     [SerializeField] float speedBackward;
     [SerializeField] float speedTurn;
+
+    [SerializeField] GameObject respawnPoint;
     private float forward;
 
     private float turn;
@@ -44,6 +47,13 @@ public class PlayerMovement : MonoBehaviour
     {
         float speed = forward > 0 ? speedForward : speedBackward;
         this.rigidbody.AddForce(this.transform.forward * forward * speed);
+    }
+
+    public void Respawn()//methode à changer de place
+    {    
+        this.transform.position = respawnPoint.transform.position;
+        this.transform.rotation = respawnPoint.transform.rotation;
+        this.rigidbody.linearVelocity = Vector3.zero;
     }
 
 }

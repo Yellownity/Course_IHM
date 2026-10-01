@@ -1143,6 +1143,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147106990}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1517059478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517059479}
+  m_Layer: 0
+  m_Name: Respawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1517059479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517059478}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -40.3, y: 1, z: 22.8853}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1757114855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 605037817038408849, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+  m_PrefabInstance: {fileID: 8492430127568315780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6008223fca4e62540b1cacf83043413e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1967464652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,12 +1466,52 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: b2c059f3-65ff-44f6-b1b5-80664bcce6b3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: 'Player/Respawn[/XInputControllerWindows/buttonWest,/Keyboard/alt]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1757114855}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRespawnPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650433169469129486, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: speed
@@ -1439,6 +1521,10 @@ PrefabInstance:
       propertyPath: speedTurn
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1517059478}
     - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: speedForward
       value: 5
@@ -1462,3 +1548,4 @@ SceneRoots:
   - {fileID: 709914177}
   - {fileID: 1024700983}
   - {fileID: 8492430127568315780}
+  - {fileID: 1517059479}
