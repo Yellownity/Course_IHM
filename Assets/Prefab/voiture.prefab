@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7043221971508568499}
   m_Layer: 0
   m_Name: voiture
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,6 +212,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a0b5078e-6635-437c-aa07-de5850f417c7
     m_ActionName: 'Player/Forward[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b2c059f3-65ff-44f6-b1b5-80664bcce6b3
+    m_ActionName: 'Player/Respawn[/Keyboard/alt]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -229,4 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e10f549cdb314da432a172b96fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 10
+  speedForward: 0
+  speedBackward: 0
+  speedTurn: 0
+  respawnPoint: {fileID: 0}
