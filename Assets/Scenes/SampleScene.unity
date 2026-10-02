@@ -2240,8 +2240,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 886160963}
     - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: maxSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: speedTurn
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: respawnPoint
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: speedForward
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+      propertyPath: orthogonalReduction
+      value: 0.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
