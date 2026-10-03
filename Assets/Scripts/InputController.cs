@@ -13,12 +13,14 @@ public class InputController : MonoBehaviour
 
     InputAction rightLeftAction;
     InputAction forwardAction;
+    InputAction boostAction;
 
     private void Start()
     {
         var playerInput = GetComponent<PlayerInput>();
         rightLeftAction = playerInput.actions.FindAction("Player/Right_Left");
         forwardAction = playerInput.actions.FindAction("Player/Forward");
+        boostAction = playerInput.actions.FindAction("Player/Boost");
 
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -30,5 +32,8 @@ public class InputController : MonoBehaviour
 
         float forwardValue = forwardAction.ReadValue<float>();
         playerMovement.putForward(forwardValue);
+
+        bool boostValue = boostAction.IsPressed();
+        playerMovement.putBoost(boostValue);
     }
 }

@@ -12,9 +12,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedTurn;
     [SerializeField] float maxSpeed;
     [SerializeField] float orthogonalReduction;
+
     private float forward;
 
     private float turn;
+
+
+    [SerializeField] private bool isBoosting;
+    [SerializeField] private float boostAmount = 100f;
+    [SerializeField] private float boostConsumption = 20f;
+    [SerializeField] private float boostForce = 30f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
     {
         forward = input;
     }
+
+    public void putBoost(bool input)
+    {
+        isBoosting = input;
+    }
+
     private void Turn(float input)
     {
         this.transform.Rotate(transform.up, input*speedTurn*Time.fixedDeltaTime);
@@ -53,6 +67,23 @@ public class PlayerMovement : MonoBehaviour
         }
         float speed = forward > 0 ? speedForward : speedBackward;
         this.rigidbody.AddForce(this.transform.forward * forward * speed *10,ForceMode.Acceleration);
+
+        if (isBoosting && boostAmount > 0)
+        {
+            this.rigidbody.AddForce(
+                this.transform.forward * boostForce,
+                ForceMode.Acceleration
+            );
+
+            boostAmount -= boostConsumption * Time.fixedDeltaTime;
+            boostAmount = Mathf.Max(boostAmount, 0f);
+        }
+
+        if (!isBoosting && boostAmount < 100f)
+        {
+            boostAmount += (boostConsumption / 2f) * Time.fixedDeltaTime;
+            boostAmount = Mathf.Min(boostAmount, 100f);
+        }
 
     }
     private void ReduceOrthogonalVelocity()
