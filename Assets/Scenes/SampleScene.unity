@@ -2245,7 +2245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: speedTurn
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7043221971508568499, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
       propertyPath: respawnPoint

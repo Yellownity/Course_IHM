@@ -53,7 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Turn(float input)
     {
-        this.transform.Rotate(transform.up, input*speedTurn*Time.fixedDeltaTime);
+        float minSpeedForTurn = rigidbody.linearVelocity.magnitude / 8;
+        minSpeedForTurn = Mathf.Clamp01(minSpeedForTurn);
+        this.transform.Rotate(transform.up, input*speedTurn*Time.fixedDeltaTime*minSpeedForTurn);
+
 
         //float getpadright = Mathf.Sign((gamepad.rightStick.ReadValue().x));
         //Vector3 move = transform.rotation*(new Vector3(0, 0, getpadright)) * 20 ;
@@ -61,12 +64,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        if (this.rigidbody.linearVelocity.magnitude > maxSpeed)
-        {
-            return;
-        }
-        float speed = forward > 0 ? speedForward : speedBackward;
-        this.rigidbody.AddForce(this.transform.forward * forward * speed *10,ForceMode.Acceleration);
+
 
         if (isBoosting && boostAmount > 0)
         {
@@ -84,6 +82,13 @@ public class PlayerMovement : MonoBehaviour
             boostAmount += (boostConsumption / 2f) * Time.fixedDeltaTime;
             boostAmount = Mathf.Min(boostAmount, 100f);
         }
+        // on mets une limite de vitesse pour ne pas dépasser la vitesse max après le boost
+        if (this.rigidbody.linearVelocity.magnitude > maxSpeed)
+        {
+            return;
+        }
+        float speed = forward > 0 ? speedForward : speedBackward;
+        this.rigidbody.AddForce(this.transform.forward * forward * speed * 10, ForceMode.Acceleration);
 
     }
     private void ReduceOrthogonalVelocity()
