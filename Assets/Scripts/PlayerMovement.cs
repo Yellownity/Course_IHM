@@ -22,13 +22,15 @@ public class PlayerMovement : MonoBehaviour
     private ParticleSystem driftParticle;
 
 
-    private bool isBoosting;
-    private bool canRechargeBoost = true;
+    [SerializeField] private bool isBoosting;
+    [SerializeField] private bool canRechargeBoost = true;
     [SerializeField] private float boostAmount = 100f;
     [SerializeField] private float boostConsumption = 30f;
     [SerializeField] private float boostForce = 30f;
 
     [SerializeField] private float boostRechargeTime = 5f;
+
+    [SerializeField] private ParticleSystem boostParticle;
 
     public static event EventHandler<float> changingBoostUIEvent;
 
@@ -36,18 +38,18 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        driftParticle = GetComponentInChildren<ParticleSystem>();
+        driftParticle = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Turn(turn);
+        RechargeBoost();
         if (!DriftIfNeeded())
         {
             Move();
         }
-
     }
     public void putTurn(float input)
     {
@@ -100,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
                 ForceMode.Acceleration
             );
 
+            boostParticle.Emit(10);
+
             boostAmount -= boostConsumption * Time.fixedDeltaTime;
             boostAmount = Mathf.Max(boostAmount, 0f);
             if (changingBoostUIEvent != null)
@@ -113,7 +117,10 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(StopRechargingTime());
             }
         }
+    }
 
+    private void RechargeBoost()
+    {
         if (!isBoosting && canRechargeBoost && boostAmount < 100f)
         {
             boostAmount += (boostConsumption / 2f) * Time.fixedDeltaTime;
