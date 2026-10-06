@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,10 +19,13 @@ public class PlayerMovement : MonoBehaviour
     private float turn;
 
 
-    [SerializeField] private bool isBoosting;
+
+    private bool isBoosting;
     [SerializeField] private float boostAmount = 100f;
-    [SerializeField] private float boostConsumption = 20f;
+    [SerializeField] private float boostConsumption = 30f;
     [SerializeField] private float boostForce = 30f;
+
+    public static event EventHandler<float> changingBoostUIEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -75,18 +79,27 @@ public class PlayerMovement : MonoBehaviour
 
             boostAmount -= boostConsumption * Time.fixedDeltaTime;
             boostAmount = Mathf.Max(boostAmount, 0f);
+            if (changingBoostUIEvent != null)
+            {
+                changingBoostUIEvent(this, boostAmount);
+            }
         }
 
         if (!isBoosting && boostAmount < 100f)
         {
             boostAmount += (boostConsumption / 2f) * Time.fixedDeltaTime;
             boostAmount = Mathf.Min(boostAmount, 100f);
+            if (changingBoostUIEvent != null)
+            {
+                changingBoostUIEvent(this, boostAmount);
+            }
         }
         // on mets une limite de vitesse pour ne pas dépasser la vitesse max après le boost
         if (this.rigidbody.linearVelocity.magnitude > maxSpeed)
         {
             return;
         }
+
         float speed = forward > 0 ? speedForward : speedBackward;
         this.rigidbody.AddForce(this.transform.forward * forward * speed * 10, ForceMode.Acceleration);
 
