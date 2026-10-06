@@ -45,8 +45,10 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Turn(turn);
-        Move();
-        DriftIfNeeded();
+        if (!DriftIfNeeded())
+        {
+            Move();
+        }
 
     }
     public void putTurn(float input)
@@ -133,15 +135,16 @@ public class PlayerMovement : MonoBehaviour
         canRechargeBoost = true;
     }
 
-    private void DriftIfNeeded()
+    private bool DriftIfNeeded()
     {
         if (!isDrifting)
         {
             ReduceOrthogonalVelocity(normalOrthogonalReduction);
-            return;
+            return false;
         }
         ReduceOrthogonalVelocity(driftOrthogonalReduction);
         driftParticle.Emit(10);
+        return true;
     }
     private void ReduceOrthogonalVelocity(float reduction)
     {
