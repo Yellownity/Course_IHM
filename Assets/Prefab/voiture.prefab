@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e10f549cdb314da432a172b96fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speedForward: 10
+  speedForward: 7
   speedBackward: 2
   speedTurn: 100
   maxSpeed: 30
