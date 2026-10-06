@@ -237,10 +237,10 @@ MonoBehaviour:
   maxSpeed: 40
   normalOrthogonalReduction: 0.8
   driftOrthogonalReduction: 0.97
-  isBoosting: 0
   boostAmount: 100
-  boostConsumption: 20
+  boostConsumption: 50
   boostForce: 30
+  boostRechargeTime: 5
 --- !u!198 &5781877388896346058
 ParticleSystem:
   m_ObjectHideFlags: 0
