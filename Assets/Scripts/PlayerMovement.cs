@@ -22,8 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private ParticleSystem driftParticle;
 
 
-    [SerializeField] private bool isBoosting;
-    [SerializeField] private bool canRechargeBoost = true;
+    private bool isBoosting;
+    private bool canRechargeBoost = true;
     [SerializeField] private float boostAmount = 100f;
     [SerializeField] private float boostConsumption = 30f;
     [SerializeField] private float boostForce = 30f;
