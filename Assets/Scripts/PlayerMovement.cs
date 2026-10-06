@@ -30,13 +30,15 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float boostRechargeTime = 5f;
 
+    [SerializeField] private ParticleSystem boostParticle;
+
     public static event EventHandler<float> changingBoostUIEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        driftParticle = GetComponentInChildren<ParticleSystem>();
+        driftParticle = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -97,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
                 this.transform.forward * boostForce,
                 ForceMode.Acceleration
             );
+
+            boostParticle.Emit(10);
 
             boostAmount -= boostConsumption * Time.fixedDeltaTime;
             boostAmount = Mathf.Max(boostAmount, 0f);
