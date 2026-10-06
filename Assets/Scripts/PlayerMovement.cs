@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,9 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     private bool isBoosting;
+    private bool canRechargeBoost = true;
     [SerializeField] private float boostAmount = 100f;
     [SerializeField] private float boostConsumption = 30f;
     [SerializeField] private float boostForce = 30f;
+
+    [SerializeField] private float boostRechargeTime = 5f;
 
     public static event EventHandler<float> changingBoostUIEvent;
 
@@ -72,6 +76,21 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
+        Boost();
+
+        // on mets une limite de vitesse pour ne pas dépasser la vitesse max après le boost
+        if (this.rigidbody.linearVelocity.magnitude > maxSpeed)
+        {
+            return;
+        }
+
+        float speed = forward > 0 ? speedForward : speedBackward;
+        this.rigidbody.AddForce(this.transform.forward * forward * speed * 10, ForceMode.Acceleration);
+
+    }
+
+    private void Boost()
+    {
         if (isBoosting && boostAmount > 0)
         {
             this.rigidbody.AddForce(
@@ -85,9 +104,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 changingBoostUIEvent(this, boostAmount);
             }
+
+            if (boostAmount <= 0f)
+            {
+                canRechargeBoost = false;
+                StartCoroutine(StopRechargingTime());
+            }
         }
 
-        if (!isBoosting && boostAmount < 100f)
+        if (!isBoosting && canRechargeBoost && boostAmount < 100f)
         {
             boostAmount += (boostConsumption / 2f) * Time.fixedDeltaTime;
             boostAmount = Mathf.Min(boostAmount, 100f);
@@ -96,15 +121,12 @@ public class PlayerMovement : MonoBehaviour
                 changingBoostUIEvent(this, boostAmount);
             }
         }
-        // on mets une limite de vitesse pour ne pas dépasser la vitesse max après le boost
-        if (this.rigidbody.linearVelocity.magnitude > maxSpeed)
-        {
-            return;
-        }
+    }
 
-        float speed = forward > 0 ? speedForward : speedBackward;
-        this.rigidbody.AddForce(this.transform.forward * forward * speed * 10, ForceMode.Acceleration);
-
+    IEnumerator StopRechargingTime()
+    {
+        yield return new WaitForSeconds(boostRechargeTime);
+        canRechargeBoost = true;
     }
 
     private void DriftIfNeeded()
