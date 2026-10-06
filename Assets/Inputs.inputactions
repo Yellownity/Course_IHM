@@ -32,7 +32,7 @@
                     "id": "b2c059f3-65ff-44f6-b1b5-80664bcce6b3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false,
                     "priority": 0
                 },

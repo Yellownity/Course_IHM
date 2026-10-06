@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -9,18 +10,24 @@ public class LapManager : MonoBehaviour
     private int currentCheckpoint = 0;
     private int totalCheckpoints;
 
+    public static event EventHandler<GameObject> onCheckpointEvent;
+
     public static event EventHandler onLapFinishedEvent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Checkpoint.onCheckpointEvent += HandleCheckpointReached;
         totalCheckpoints = checkpoints.Count;
+        if (onCheckpointEvent != null)
+        {
+            onCheckpointEvent(this, checkpoints[1]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void HandleCheckpointReached(object sender, int checkpointID)
@@ -29,6 +36,11 @@ public class LapManager : MonoBehaviour
         if (checkpointID == nextCheckpoint)
         {
             currentCheckpoint = nextCheckpoint;
+            if(onCheckpointEvent != null)
+            {
+                int nextCheckpointIndex = (currentCheckpoint + 1) % totalCheckpoints;
+                onCheckpointEvent(this, checkpoints[nextCheckpointIndex]);
+            }
             if (currentCheckpoint == 0 && onLapFinishedEvent != null)
             {
                 onLapFinishedEvent(this, EventArgs.Empty);
