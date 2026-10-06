@@ -2,7 +2,7 @@
 - Project name: Course_IHM
 - Unity version: Unity 6000.3.24f1
 - Active game object:
-  - Name: Background
-  - Tag: Untagged
-  - Layer: UI
+  - Name: voiture
+  - Tag: Player
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

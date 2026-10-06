@@ -12,12 +12,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedBackward;
     [SerializeField] float speedTurn;
     [SerializeField] float maxSpeed;
-    [SerializeField] float orthogonalReduction;
-
+    [SerializeField] float normalOrthogonalReduction;
+    [SerializeField] float driftOrthogonalReduction;
     private float forward;
 
     private float turn;
-
+    private bool isDrifting;
+    private ParticleSystem driftParticle;
 
 
     private bool isBoosting;
@@ -31,15 +32,16 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        driftParticle = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Turn(turn);
-        ReduceOrthogonalVelocity();
         Move();
-   
+        DriftIfNeeded();
+
     }
     public void putTurn(float input)
     {
@@ -55,16 +57,16 @@ public class PlayerMovement : MonoBehaviour
         isBoosting = input;
     }
 
+    public void putDrift(bool input)
+    {
+        isDrifting = input;
+    }
+
     private void Turn(float input)
     {
         float minSpeedForTurn = rigidbody.linearVelocity.magnitude / 8;
         minSpeedForTurn = Mathf.Clamp01(minSpeedForTurn);
-        this.transform.Rotate(transform.up, input*speedTurn*Time.fixedDeltaTime*minSpeedForTurn);
-
-
-        //float getpadright = Mathf.Sign((gamepad.rightStick.ReadValue().x));
-        //Vector3 move = transform.rotation*(new Vector3(0, 0, getpadright)) * 20 ;
-        //this.rigidbody.AddForce(move);
+        this.transform.Rotate(transform.up, input * speedTurn * Time.fixedDeltaTime * minSpeedForTurn);
     }
     private void Move()
     {
@@ -104,12 +106,23 @@ public class PlayerMovement : MonoBehaviour
         this.rigidbody.AddForce(this.transform.forward * forward * speed * 10, ForceMode.Acceleration);
 
     }
-    private void ReduceOrthogonalVelocity()
+
+    private void DriftIfNeeded()
+    {
+        if (!isDrifting)
+        {
+            ReduceOrthogonalVelocity(normalOrthogonalReduction);
+            return;
+        }
+        ReduceOrthogonalVelocity(driftOrthogonalReduction);
+        driftParticle.Emit(10);
+    }
+    private void ReduceOrthogonalVelocity(float reduction)
     {
         Vector3 forwardVelocity = transform.forward * Vector3.Dot(transform.forward, this.rigidbody.linearVelocity);
         Vector3 orthogonalVelocity = transform.right * Vector3.Dot(transform.right, this.rigidbody.linearVelocity);
 
-        this.rigidbody.linearVelocity = forwardVelocity + orthogonalVelocity * orthogonalReduction;
+        this.rigidbody.linearVelocity = forwardVelocity + orthogonalVelocity * reduction;
     }
 
 }
