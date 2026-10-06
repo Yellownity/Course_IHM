@@ -15,12 +15,15 @@ public class InputController : MonoBehaviour
     InputAction forwardAction;
     InputAction boostAction;
 
+    InputAction driftAction;
+
     private void Start()
     {
         var playerInput = GetComponent<PlayerInput>();
         rightLeftAction = playerInput.actions.FindAction("Player/Right_Left");
         forwardAction = playerInput.actions.FindAction("Player/Forward");
         boostAction = playerInput.actions.FindAction("Player/Boost");
+        driftAction = playerInput.actions.FindAction("Player/Drift");
 
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -35,5 +38,8 @@ public class InputController : MonoBehaviour
 
         bool boostValue = boostAction.IsPressed();
         playerMovement.putBoost(boostValue);
+
+        bool driftValue = driftAction.IsPressed();
+        playerMovement.putDrift(driftValue);
     }
 }
