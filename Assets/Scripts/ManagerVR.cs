@@ -7,6 +7,7 @@ public class ManagerVR : MonoBehaviour
     private GameObject vrRig;
     [SerializeField]
     private GameObject desktopCamera;
+    public static bool isVRActive = false;
 
     void Awake()
     {
@@ -14,11 +15,13 @@ public class ManagerVR : MonoBehaviour
         {
             vrRig.SetActive(true);
             desktopCamera.SetActive(false);
+            isVRActive = true;
         }
         else
         {
             vrRig.SetActive(false);
             desktopCamera.SetActive(true);
+            isVRActive = false;
         }
     }
 }
