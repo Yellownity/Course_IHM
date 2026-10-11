@@ -380,13 +380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853d9d6d954b43748a23a630bcda1e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  offsetDistance: 20
+  CameraSpot: {fileID: 1564907881}
+  offset: {x: 0, y: 50, z: -5}
   smoothTime: 0.35
-  checkpointSmoothTime: 0.6
-  checkpointResponsiveness: 3
-  followSpeedFactor: 1.5
-  minCheckpointMoveSpeed: 2
-  minAheadDistance: 15
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1184,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491885062}
   m_CullTransparentMesh: 1
+--- !u!4 &1564907881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3176008300398921043, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
+  m_PrefabInstance: {fileID: 8492430127568315780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1582668805
 GameObject:
   m_ObjectHideFlags: 0
