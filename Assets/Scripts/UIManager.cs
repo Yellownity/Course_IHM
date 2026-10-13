@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private int lapsCompleted = 0;
-    [SerializeField] private int totalLaps = 3;
+    [SerializeField] private int totalLaps;
     [SerializeField] private TextMeshProUGUI lapNumber;
     [SerializeField] private Slider boostSlider;
     [SerializeField] private TextMeshProUGUI timerText;
@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     {
         LapManager.onLapFinishedEvent += HandleLapFinished;
         PlayerMovement.changingBoostUIEvent += HandleBoost;
+        totalLaps = GameManager.Instance.totalLapCount;
+        ActualiseLapNumber();
         StartCoroutine(Timer());
     }
 
@@ -31,10 +33,10 @@ public class UIManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
-            timer += 1f; 
+            timer += Time.deltaTime;
             timerText.text = "Time: " + timer.ToString("F2") + "s";
-            
+            yield return new WaitForSeconds(0.01f);
+
         }
     }
 
@@ -48,8 +50,11 @@ public class UIManager : MonoBehaviour
     void HandleLapFinished(object sender,EventArgs args)
     {
         lapsCompleted += 1;
-        lapNumber.text = "Lap: " + lapsCompleted + "/" + totalLaps;
+        ActualiseLapNumber();
+    }
 
-        Debug.Log("Total laps completed: " + lapsCompleted);
+    void ActualiseLapNumber()
+    {
+        lapNumber.text = "Lap: " + lapsCompleted + "/" + totalLaps;
     }
 }

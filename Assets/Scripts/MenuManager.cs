@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private GameObject playMenu;
 
-    int lapCount = 3;
+    private int lapCount = 3;
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(playMenuButton);
@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
     public void onStartPressed()
     {
         EventSystem.current.SetSelectedGameObject(null);
+        GameManager.Instance.totalLapCount = lapCount;
         if (ManagerVR.isVRActive)
         {
             SceneManager.LoadScene("CircuitVR");
