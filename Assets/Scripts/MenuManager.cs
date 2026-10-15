@@ -1,7 +1,10 @@
+using NUnit.Framework;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,9 +12,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject playMenuButton;
 
     [SerializeField] private TextMeshProUGUI lapCountText;
-    [SerializeField] private GameObject plusButton;
+    [SerializeField] private GameObject nextButton;
 
     [SerializeField] private GameObject playMenu;
+
+    [SerializeField] private List<string> mapName;
+    [SerializeField] private TextMeshProUGUI mapNameText;
+    private int currentMapIndex = 0;
 
     private int lapCount = 3;
     void Start()
@@ -19,6 +26,7 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(playMenuButton);
         lapCountText.text = lapCount.ToString();
         playMenu.SetActive(false);
+        mapNameText.text = mapName[currentMapIndex];
     }
 
     // Update is called once per frame
@@ -29,16 +37,10 @@ public class MenuManager : MonoBehaviour
 
     public void onStartPressed()
     {
+        playMenu.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         GameManager.Instance.totalLapCount = lapCount;
-        if (ManagerVR.isVRActive)
-        {
-            SceneManager.LoadScene("CircuitVR");
-        }
-        else
-        {
-            SceneManager.LoadScene("CircuitPC");
-        }
+        SceneManager.LoadScene(mapName[currentMapIndex]);
     }
 
     public void onQuitPressed()
@@ -47,7 +49,7 @@ public class MenuManager : MonoBehaviour
     }
     public void onPlayPressed()
     { 
-        EventSystem.current.SetSelectedGameObject(plusButton);
+        EventSystem.current.SetSelectedGameObject(nextButton);
         playMenu.SetActive(true);
     }
     public void onMoreLapsPressed()
@@ -67,5 +69,16 @@ public class MenuManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(playMenuButton);
         playMenu.SetActive(false);
+    }
+
+    public void onNextPressed()
+    {
+        currentMapIndex = (currentMapIndex + 1) % mapName.Count;
+        mapNameText.text = mapName[currentMapIndex];
+    }
+    public void onPreviousPressed()
+    {
+        currentMapIndex = (currentMapIndex - 1 + mapName.Count) % mapName.Count;
+        mapNameText.text = mapName[currentMapIndex];
     }
 }

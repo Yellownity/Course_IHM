@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -41,5 +42,10 @@ public class InputController : MonoBehaviour
 
         bool driftValue = driftAction.IsPressed();
         playerMovement.putDrift(driftValue);
+    }
+
+    public void OnPause()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

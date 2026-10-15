@@ -18,7 +18,14 @@ public class UIManager : MonoBehaviour
     {
         LapManager.onLapFinishedEvent += HandleLapFinished;
         PlayerMovement.changingBoostUIEvent += HandleBoost;
-        totalLaps = GameManager.Instance.totalLapCount;
+        if (GameManager.Instance != null)
+        {
+            totalLaps = GameManager.Instance.totalLapCount;
+        }
+        else
+        {
+            totalLaps = 3;
+        }
         ActualiseLapNumber();
         StartCoroutine(Timer());
     }
