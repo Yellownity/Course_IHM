@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lapNumber;
     [SerializeField] private Slider boostSlider;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private GameObject endGamePanel;
     float timer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,6 +59,10 @@ public class UIManager : MonoBehaviour
     {
         lapsCompleted += 1;
         ActualiseLapNumber();
+        if (lapsCompleted >= totalLaps)
+        {
+            endGamePanel.SetActive(true);
+        }
     }
 
     void ActualiseLapNumber()

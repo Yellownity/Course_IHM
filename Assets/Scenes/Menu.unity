@@ -429,6 +429,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297900056}
   m_CullTransparentMesh: 1
+--- !u!1 &388720522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 388720523}
+  - component: {fileID: 388720524}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &388720523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388720522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 885, y: 476, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388720524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388720522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6e726d807c691428a7487d8098a279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playMenuButton: {fileID: 1025390161}
+  lapCountText: {fileID: 38556989}
+  nextButton: {fileID: 2066329027}
+  playMenu: {fileID: 1368517818}
+  mapName:
+  - Circuit1
+  - CircuitBoost
+  - CircuitCross
+  mapNameText: {fileID: 1731943850}
 --- !u!1 &500979027
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onQuitPressed
         m_Mode: 1
@@ -1214,7 +1267,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onStartPressed
         m_Mode: 1
@@ -1726,7 +1779,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onPlayPressed
         m_Mode: 1
@@ -1858,7 +1911,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onMoreLapsPressed
         m_Mode: 1
@@ -1918,7 +1971,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1237521453}
   - component: {fileID: 1237521454}
-  - component: {fileID: 1237521455}
   - component: {fileID: 1237521456}
   m_Layer: 0
   m_Name: Manager
@@ -1956,27 +2008,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ManagerVR
   vrRig: {fileID: 500979027}
   desktopCamera: {fileID: 523486932}
---- !u!114 &1237521455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237521452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6e726d807c691428a7487d8098a279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  playMenuButton: {fileID: 1025390161}
-  lapCountText: {fileID: 38556989}
-  nextButton: {fileID: 2066329027}
-  playMenu: {fileID: 1368517818}
-  mapName:
-  - Circuit1
-  - CircuitBoost
-  - CircuitCross
-  mapNameText: {fileID: 1731943850}
 --- !u!114 &1237521456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,7 +2278,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onPreviousPressed
         m_Mode: 1
@@ -2379,7 +2410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onLessLapsPressed
         m_Mode: 1
@@ -2790,7 +2821,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onBackPressed
         m_Mode: 1
@@ -3101,7 +3132,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1237521455}
+      - m_Target: {fileID: 388720524}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: onNextPressed
         m_Mode: 1
@@ -3327,7 +3358,8 @@ SceneRoots:
   - {fileID: 523486935}
   - {fileID: 500979030}
   - {fileID: 986482557}
-  - {fileID: 1237521453}
   - {fileID: 848746721}
+  - {fileID: 1237521453}
   - {fileID: 2064753609}
   - {fileID: 590161028}
+  - {fileID: 388720523}
