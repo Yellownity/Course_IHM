@@ -476,6 +476,7 @@ MonoBehaviour:
   playMenuButton: {fileID: 1025390161}
   lapCountText: {fileID: 38556989}
   nextButton: {fileID: 2066329027}
+  plusButton: {fileID: 1195725774}
   playMenu: {fileID: 1368517818}
   mapName:
   - Tuto
@@ -3042,8 +3043,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 653563733}
   - {fileID: 2071911106}
+  - {fileID: 653563733}
   - {fileID: 859502705}
   - {fileID: 1803083479}
   m_Father: {fileID: 1368517819}
