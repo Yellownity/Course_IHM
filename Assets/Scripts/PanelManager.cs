@@ -20,11 +20,13 @@ public class PanelManager : MonoBehaviour
     public void OnRestartPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1.0f;
     }
 
     public void OnBackToMenuPressed()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1.0f;
     }
 
     public void OnQuitPressed()

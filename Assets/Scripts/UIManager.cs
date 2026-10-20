@@ -12,10 +12,28 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider boostSlider;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject endGamePanel;
-    float timer = 0f;
+
+    [SerializeField] private TextMeshProUGUI bestLapTimeText;
+    [SerializeField] private TextMeshProUGUI differenceTimeText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public static UIManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        // 1. Vérifier si une instance existe déjà
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Détruit le doublon
+            return;
+        }
+        Instance = this;
+    }
+
+        // 2. Assigner l'instance et rendre l'objet persistant
+       
+        void Start()
     {
         LapManager.onLapFinishedEvent += HandleLapFinished;
         PlayerMovement.changingBoostUIEvent += HandleBoost;
@@ -28,24 +46,12 @@ public class UIManager : MonoBehaviour
             totalLaps = 3;
         }
         ActualiseLapNumber();
-        StartCoroutine(Timer());
     }
 
     private void OnDisable()
     {
         LapManager.onLapFinishedEvent -= HandleLapFinished;
         PlayerMovement.changingBoostUIEvent -= HandleBoost;
-    }
-
-    IEnumerator Timer()
-    {
-        while (true)
-        {
-            timer += Time.deltaTime;
-            timerText.text = "Time: " + timer.ToString("F2") + "s";
-            yield return new WaitForSeconds(0.01f);
-
-        }
     }
 
 
@@ -62,11 +68,38 @@ public class UIManager : MonoBehaviour
         if (lapsCompleted >= totalLaps)
         {
             endGamePanel.SetActive(true);
+            Time.timeScale = 0f; // Pause the game
         }
     }
 
     void ActualiseLapNumber()
     {
         lapNumber.text = "Lap: " + lapsCompleted + "/" + totalLaps;
+    }
+
+    public void SetTotalTime(float time)
+    {
+        timerText.text = "Time: " + time.ToString("F2") + "s";
+    }
+    public void SetBestLapTime(float time)
+    {
+        bestLapTimeText.text = "Best Lap: " + time.ToString("F2") + "s";
+    }
+    public void SetDifferenceTime(float time)
+    {
+        if (time > 0)
+        {
+            differenceTimeText.text = "+" + time.ToString("F2") + "s";
+            differenceTimeText.color = Color.red;
+        }
+        else if (time < 0)
+        {
+            differenceTimeText.text = time.ToString("F2") + "s";
+            differenceTimeText.color = Color.green;
+        }
+        else
+        {
+            differenceTimeText.text = "";
+        }
     }
 }

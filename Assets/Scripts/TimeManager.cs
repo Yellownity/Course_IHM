@@ -8,7 +8,7 @@ public class TimeManager : MonoBehaviour
     float timer = 0f;
     float startLapTime = 0f;
     float bestLapTime = float.MaxValue;
-    List<float> checkpointTimes = new List<float>();
+    public List<float> checkpointTimes = new List<float>();
     List<float> bestCheckpointTimes = new List<float>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
-            //UIManager.SetTotalTime(timer);
+            UIManager.Instance.SetTotalTime(timer);
             yield return new WaitForSeconds(0.01f);
 
         }
@@ -40,13 +40,21 @@ public class TimeManager : MonoBehaviour
         float checkpointTime = timer - startLapTime;
         if (checkpointTimes.Count <= checkpointID)
         {
+            for (int i = checkpointTimes.Count; i < checkpointID; i++)
+            {
+                checkpointTimes.Add(float.MaxValue);
+            }
             checkpointTimes.Add(checkpointTime);
         }
         else
         {
             checkpointTimes[checkpointID] = checkpointTime;
         }
-        float differenceTime = bestCheckpointTimes[checkpointID] - checkpointTime;
+        if (bestCheckpointTimes.Count != 0)
+        {
+            float differenceTime = checkpointTime - bestCheckpointTimes[checkpointID];
+            UIManager.Instance.SetDifferenceTime(differenceTime);
+        }
 
         if (checkpointID == 0)
         {
@@ -57,11 +65,10 @@ public class TimeManager : MonoBehaviour
             {
                 bestLapTime = lapTime;
                 bestCheckpointTimes = new List<float>(checkpointTimes);
-                //UIManager.SetBestLapTime(bestLapTime);
+                UIManager.Instance.SetBestLapTime(bestLapTime);
             }
             startLapTime = timer; 
         }
-        //UIManager.SetDifferenceTime(differenceTime);
     }
 
 
