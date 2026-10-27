@@ -6,8 +6,9 @@ public class PanelManager : MonoBehaviour
 {
     [SerializeField] private GameObject firstButton;
     [Header("Controls Menu")]
-    [SerializeField] private GameObject controlsBackButton;
     [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject controlsBackButton;
+    
 
     private void OnEnable()
     {

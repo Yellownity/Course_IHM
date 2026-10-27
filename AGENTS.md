@@ -2,7 +2,7 @@
 - Project name: Course_IHM
 - Unity version: Unity 6000.3.24f1
 - Active game object:
-  - Name: CanvasVR
-  - Tag: VR
+  - Name: PausePanel 
+  - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

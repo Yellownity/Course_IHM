@@ -2058,8 +2058,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelManager
   firstButton: {fileID: 6579447744756480485}
-  controlsBackButton: {fileID: 4529052917281095124}
-  controlsMenu: {fileID: 6086305724461128257}
+  controlsMenu: {fileID: 4529052917281095124}
+  controlsBackButton: {fileID: 6086305724461128257}
 --- !u!1 &3459255795162202566
 GameObject:
   m_ObjectHideFlags: 0
@@ -6611,8 +6611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelManager
   firstButton: {fileID: 8172918128357753276}
-  controlsBackButton: {fileID: 0}
   controlsMenu: {fileID: 0}
+  controlsBackButton: {fileID: 0}
 --- !u!1 &9171622148357748702
 GameObject:
   m_ObjectHideFlags: 0
