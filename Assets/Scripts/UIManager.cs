@@ -12,31 +12,32 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider boostSlider;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject pausePanel;
 
     [SerializeField] private TextMeshProUGUI bestLapTimeText;
     [SerializeField] private TextMeshProUGUI differenceTimeText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public static UIManager Instance { get; private set; }
 
-    private void Awake()
-    {
-        // 1. Vérifier si une instance existe déjà
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); // Détruit le doublon
-            return;
-        }
-        Instance = this;
-    }
 
-        // 2. Assigner l'instance et rendre l'objet persistant
-       
-        void Start()
+    // 2. Assigner l'instance et rendre l'objet persistant
+    private void OnEnable()
     {
         LapManager.onLapFinishedEvent += HandleLapFinished;
         PlayerMovement.changingBoostUIEvent += HandleBoost;
+        InputController.onPauseEvent += HandlePause;
+    }
+    private void OnDisable()
+    {
+        LapManager.onLapFinishedEvent -= HandleLapFinished;
+        PlayerMovement.changingBoostUIEvent -= HandleBoost;
+        InputController.onPauseEvent -= HandlePause;
+    }
+
+    void Start()
+    {
+
         if (GameManager.Instance != null)
         {
             totalLaps = GameManager.Instance.totalLapCount;
@@ -48,11 +49,6 @@ public class UIManager : MonoBehaviour
         ActualiseLapNumber();
     }
 
-    private void OnDisable()
-    {
-        LapManager.onLapFinishedEvent -= HandleLapFinished;
-        PlayerMovement.changingBoostUIEvent -= HandleBoost;
-    }
 
 
     void HandleBoost(object sender, float boostAmount)
@@ -68,7 +64,6 @@ public class UIManager : MonoBehaviour
         if (lapsCompleted >= totalLaps)
         {
             endGamePanel.SetActive(true);
-            Time.timeScale = 0f; // Pause the game
         }
     }
 
@@ -101,5 +96,9 @@ public class UIManager : MonoBehaviour
         {
             differenceTimeText.text = "";
         }
+    }
+    void HandlePause(object sender, EventArgs args)
+    {
+        pausePanel.SetActive(true);
     }
 }

@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isDrifting;
     private ParticleSystem driftParticle;
 
+    private bool respawnRequested;
+    private Vector3 respawnPosition;
+    private Quaternion respawnRotation;
+
 
     private bool isBoosting;
     private bool canRechargeBoost = true;
@@ -44,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (respawnRequested)
+        {
+            ApplyRespawn();
+            return; // on saute ce tick de physique pour ne pas écraser la téléportation
+        }
         Turn(turn);
         RechargeBoost();
         if (!DriftIfNeeded())
@@ -155,6 +164,28 @@ public class PlayerMovement : MonoBehaviour
         Vector3 orthogonalVelocity = transform.right * Vector3.Dot(transform.right, this.rigidbody.linearVelocity);
 
         this.rigidbody.linearVelocity = forwardVelocity + orthogonalVelocity * reduction;
+    }
+
+
+    public void Respawn(Vector3 position, Quaternion rotation)
+    {
+        respawnRequested = true;
+        respawnPosition = position;
+        respawnRotation = rotation;
+    }
+
+    private void ApplyRespawn()
+    {
+        respawnRequested = false;
+
+        rigidbody.linearVelocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+
+        rigidbody.position = respawnPosition;
+        rigidbody.rotation = respawnRotation;
+
+        transform.SetPositionAndRotation(respawnPosition, respawnRotation);
+        Physics.SyncTransforms();
     }
 
 }

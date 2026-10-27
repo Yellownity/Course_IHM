@@ -10,11 +10,20 @@ public class TimeManager : MonoBehaviour
     float bestLapTime = float.MaxValue;
     public List<float> checkpointTimes = new List<float>();
     List<float> bestCheckpointTimes = new List<float>();
+
+    [SerializeField] private UIManager uiManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
         StartCoroutine(Timer());
+    }
+    private void OnEnable()
+    {
+        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
+    }
+    private void OnDisable()
+    {
+        Checkpoint.onCheckpointEvent -= HandleCheckpointReached;
     }
 
     // Update is called once per frame
@@ -28,7 +37,7 @@ public class TimeManager : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
-            UIManager.Instance.SetTotalTime(timer);
+            uiManager.SetTotalTime(timer);
             yield return new WaitForSeconds(0.01f);
 
         }
@@ -53,7 +62,7 @@ public class TimeManager : MonoBehaviour
         if (bestCheckpointTimes.Count != 0)
         {
             float differenceTime = checkpointTime - bestCheckpointTimes[checkpointID];
-            UIManager.Instance.SetDifferenceTime(differenceTime);
+            uiManager.SetDifferenceTime(differenceTime);
         }
 
         if (checkpointID == 0)
@@ -65,7 +74,7 @@ public class TimeManager : MonoBehaviour
             {
                 bestLapTime = lapTime;
                 bestCheckpointTimes = new List<float>(checkpointTimes);
-                UIManager.Instance.SetBestLapTime(bestLapTime);
+                uiManager.SetBestLapTime(bestLapTime);
             }
             startLapTime = timer; 
         }

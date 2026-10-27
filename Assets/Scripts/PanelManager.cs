@@ -4,13 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class PanelManager : MonoBehaviour
 {
-    [SerializeField] private GameObject restartButton;
-    [SerializeField] private GameObject backToMenuButton;
-    [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject firstButton;
 
     private void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(restartButton);
+        EventSystem.current.SetSelectedGameObject(firstButton);
+        Time.timeScale = 0f; // Pause the game
     }
     void Start()
     {
@@ -19,8 +18,9 @@ public class PanelManager : MonoBehaviour
 
     public void OnRestartPressed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     public void OnBackToMenuPressed()
@@ -34,8 +34,15 @@ public class PanelManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnResumePressed()
+    {
+        Time.timeScale = 1.0f;
+        this.gameObject.SetActive(false);
+    }
+
     void Update()
     {
         
     }
+
 }

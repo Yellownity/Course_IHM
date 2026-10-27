@@ -12,16 +12,21 @@ public class MenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private GameObject playMenuButton;
 
+
+    private ColorBlock colors;
+
+    [Header("PLay Menu")]
     [SerializeField] private TextMeshProUGUI lapCountText;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject plusButton;
-    private ColorBlock colors;
-     
-
     [SerializeField] private GameObject playMenu;
 
     [SerializeField] private List<string> mapName;
     [SerializeField] private TextMeshProUGUI mapNameText;
+
+    [Header("Controls Menu")]
+    [SerializeField] private GameObject controlsBackButton;
+    [SerializeField] private GameObject controlsMenu;
     private int currentMapIndex = 0;
 
     private int lapCount = 1;
@@ -30,6 +35,7 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(playMenuButton);
         lapCountText.text = lapCount.ToString();
         playMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         mapNameText.text = mapName[currentMapIndex];
         colors = plusButton.GetComponent<Button>().colors;
     }
@@ -81,6 +87,7 @@ public class MenuManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(playMenuButton);
         playMenu.SetActive(false);
+        controlsMenu.SetActive(false);
     }
 
     public void onNextPressed()
@@ -121,5 +128,10 @@ public class MenuManager : MonoBehaviour
             colors.selectedColor = new Color(125f / 255f, 120f / 255f, 43f / 255f, 1f);
             plusButton.GetComponent<Button>().colors = colors;
         }
+    }
+    public void onControlsPressed()
+    {
+        EventSystem.current.SetSelectedGameObject(controlsBackButton);
+        controlsMenu.SetActive(true);
     }
 }

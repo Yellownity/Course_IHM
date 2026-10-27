@@ -13,10 +13,20 @@ public class LapManager : MonoBehaviour
     public static event EventHandler<GameObject> onCheckpointEvent;
 
     public static event EventHandler onLapFinishedEvent;
+
+    private void OnEnable()
+    {
+        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
+    }
+
+    private void OnDisable()
+    {
+        Checkpoint.onCheckpointEvent -= HandleCheckpointReached;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
         totalCheckpoints = checkpoints.Count;
         if (onCheckpointEvent != null)
         {
@@ -50,9 +60,10 @@ public class LapManager : MonoBehaviour
 
     public void OnRespawnPressed()
     {
-        Transform player = FindFirstObjectByType<PlayerMovement>().transform;
-        player.position = checkpoints[currentCheckpoint].transform.position;
-        player.rotation = checkpoints[currentCheckpoint].transform.rotation;
-        player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        PlayerMovement player = FindFirstObjectByType<PlayerMovement>();
+        player.Respawn(
+            checkpoints[currentCheckpoint].transform.position,
+            checkpoints[currentCheckpoint].transform.rotation
+        );
     }
 }

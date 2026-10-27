@@ -2,7 +2,7 @@
 - Project name: Course_IHM
 - Unity version: Unity 6000.3.24f1
 - Active game object:
-  - Name: LapManager
-  - Tag: Untagged
-  - Layer: Default
+  - Name: CanvasPC
+  - Tag: PC
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

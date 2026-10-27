@@ -1,11 +1,12 @@
 using JetBrains.Annotations;
+using System;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
+    public static InputController Instance { get; private set; }
     PlayerMovement playerMovement;
 
 
@@ -17,6 +18,32 @@ public class InputController : MonoBehaviour
     InputAction boostAction;
 
     InputAction driftAction;
+
+    public static event EventHandler<EventArgs> onPauseEvent;
+
+
+
+    private void Awake()
+    {
+        // 1. Vérifier si une instance existe déjà
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Détruit le doublon
+            return;
+        }
+
+        // Keep the controller scoped to the player in the current scene.
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
 
     private void Start()
     {
@@ -46,6 +73,9 @@ public class InputController : MonoBehaviour
 
     public void OnPause()
     {
-        SceneManager.LoadScene("Menu");
+        if (onPauseEvent != null)
+        {
+            onPauseEvent(this, EventArgs.Empty);
+        }
     }
 }

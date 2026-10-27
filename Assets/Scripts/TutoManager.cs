@@ -9,20 +9,22 @@ public class TutoManager : MonoBehaviour
     {
         disableAll();
         tutoPanels[0].SetActive(true);
-        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
+    }
+    private void OnDisable()
+    {
+        Checkpoint.onCheckpointEvent -= HandleCheckpointReached;
     }
 
     void disableAll()
     {
         foreach (GameObject panel in tutoPanels)
         {
-            panel.SetActive(false);
+               panel.SetActive(false);
         }
     }
     void HandleCheckpointReached(object sender, int checkpointID)
@@ -33,4 +35,5 @@ public class TutoManager : MonoBehaviour
             tutoPanels[checkpointID].SetActive(true);
         }
     }
+
 }
