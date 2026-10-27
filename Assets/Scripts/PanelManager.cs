@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class PanelManager : MonoBehaviour
 {
     [SerializeField] private GameObject firstButton;
+    [Header("Controls Menu")]
+    [SerializeField] private GameObject controlsBackButton;
+    [SerializeField] private GameObject controlsMenu;
 
     private void OnEnable()
     {
@@ -40,9 +43,15 @@ public class PanelManager : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    void Update()
+    public void OnControlsPressed()
     {
-        
+        EventSystem.current.SetSelectedGameObject(controlsBackButton);
+        controlsMenu.SetActive(true);
+    }
+    public void onBackPressed()
+    {
+        EventSystem.current.SetSelectedGameObject(firstButton);
+        controlsMenu.SetActive(false);
     }
 
 }
