@@ -2016,9 +2016,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac89018e5956b34aa480d72ff7ae8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelManager
-  firstButton: {fileID: 0}
-  controlsBackButton: {fileID: 0}
+  firstButton: {fileID: 1053459104870334080}
   controlsMenu: {fileID: 0}
+  controlsBackButton: {fileID: 0}
 --- !u!1 &3909766340914726603
 GameObject:
   m_ObjectHideFlags: 0
@@ -4160,8 +4160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelManager
   firstButton: {fileID: 2183062899069963670}
-  controlsBackButton: {fileID: 8612612172794394500}
   controlsMenu: {fileID: 4583553377203767145}
+  controlsBackButton: {fileID: 8612612172794394500}
 --- !u!1 &6032684127052139402
 GameObject:
   m_ObjectHideFlags: 0
@@ -5619,7 +5619,7 @@ MonoBehaviour:
   boostSlider: {fileID: 2374735177011946376}
   timerText: {fileID: 6014542119983388148}
   endGamePanel: {fileID: 3721786747391787053}
-  pausePanel: {fileID: 0}
+  pausePanel: {fileID: 5924607351743314028}
   bestLapTimeText: {fileID: 2525211782057445815}
   differenceTimeText: {fileID: 4105771021114808450}
 --- !u!114 &1324324463656293372

@@ -154,7 +154,9 @@ public class PlayerMovement : MonoBehaviour
             ReduceOrthogonalVelocity(normalOrthogonalReduction);
             return false;
         }
+        this.rigidbody.AddForce(this.transform.forward * forward * speedBackward * 10, ForceMode.Acceleration);
         ReduceOrthogonalVelocity(driftOrthogonalReduction);
+
         driftParticle.Emit(10);
         return true;
     }

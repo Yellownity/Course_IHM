@@ -254,7 +254,7 @@ MonoBehaviour:
   speedTurn: 100
   maxSpeed: 30
   normalOrthogonalReduction: 0.8
-  driftOrthogonalReduction: 0.97
+  driftOrthogonalReduction: 0.99
   boostAmount: 100
   boostConsumption: 50
   boostForce: 30
