@@ -8,6 +8,7 @@ public class InputController : MonoBehaviour
 {
     public static InputController Instance { get; private set; }
     PlayerMovement playerMovement;
+    [SerializeField] private AudioManager audioManager;
 
 
     float left_right_input;
@@ -63,6 +64,7 @@ public class InputController : MonoBehaviour
 
         float forwardValue = forwardAction.ReadValue<float>();
         playerMovement.putForward(forwardValue);
+        audioManager.ManageEngineSound(forwardValue);
 
         bool boostValue = boostAction.IsPressed();
         playerMovement.putBoost(boostValue);
