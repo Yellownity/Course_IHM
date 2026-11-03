@@ -17,6 +17,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestLapTimeText;
     [SerializeField] private TextMeshProUGUI differenceTimeText;
 
+    [SerializeField] private TextMeshProUGUI totalTimeText;
+    [SerializeField] private TextMeshProUGUI bestLapTotalTimeText;
+
+    private float bestLapTime;
+    private float totalTime;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -63,6 +69,8 @@ public class UIManager : MonoBehaviour
         ActualiseLapNumber();
         if (lapsCompleted >= totalLaps)
         {
+            totalTimeText.text = "Total Time: " + totalTime.ToString("F2") + "s";
+            bestLapTotalTimeText.text = "Best Lap Time: " + bestLapTime.ToString("F2") + "s";
             endGamePanel.SetActive(true);
         }
     }
@@ -80,10 +88,12 @@ public class UIManager : MonoBehaviour
     public void SetTotalTime(float time)
     {
         timerText.text = "Time: " + time.ToString("F2") + "s";
+        totalTime = time;
     }
     public void SetBestLapTime(float time)
     {
         bestLapTimeText.text = "Best Lap: " + time.ToString("F2") + "s";
+        bestLapTime = time;
     }
     public void SetDifferenceTime(float time)
     {
