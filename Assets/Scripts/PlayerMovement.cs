@@ -81,9 +81,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Turn(float input)
     {
-        float minSpeedForTurn = rigidbody.linearVelocity.magnitude / 8;
-        minSpeedForTurn = Mathf.Clamp01(minSpeedForTurn);
-        this.transform.Rotate(transform.up, input * speedTurn * Time.fixedDeltaTime * minSpeedForTurn);
+        //float minSpeedForTurn = rigidbody.linearVelocity.magnitude / 8;
+        //minSpeedForTurn = Mathf.Clamp01(minSpeedForTurn);
+        this.transform.Rotate(transform.up, input * speedTurn * Time.fixedDeltaTime);
     }
     private void Move()
     {
