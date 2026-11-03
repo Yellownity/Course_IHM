@@ -65,11 +65,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public float GetMaxSpeed()
-    {
-        return maxSpeed;
-    }
-
     public float GetBoostAmount()
     {
         return boostAmount;
