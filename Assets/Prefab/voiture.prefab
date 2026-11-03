@@ -262,7 +262,7 @@ MonoBehaviour:
   maxSpeed: 30
   normalOrthogonalReduction: 0.8
   driftOrthogonalReduction: 0.99
-  driftForce: 16
+  driftForce: 0.6
   boostAmount: 100
   boostConsumption: 50
   boostForce: 30
