@@ -185,6 +185,8 @@ public class PlayerMovement : MonoBehaviour
         this.rigidbody.AddForce(-this.rigidbody.linearVelocity  * driftForce, ForceMode.Acceleration);
         ReduceOrthogonalVelocity(driftOrthogonalReduction);
 
+        boostAmount += boostConsumption * Time.fixedDeltaTime/2f;
+        changingBoostUIEvent(this, boostAmount);
         driftParticle.Emit(10);
         return true;
     }
