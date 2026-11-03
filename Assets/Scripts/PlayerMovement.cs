@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float maxSpeed;
     [SerializeField] float normalOrthogonalReduction;
     [SerializeField] float driftOrthogonalReduction;
+    [SerializeField] private float driftForce;
     private float forward;
 
     private float turn;
@@ -37,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem boostParticle;
 
     public static event EventHandler<float> changingBoostUIEvent;
+
+    [SerializeField] private float acceleration = 5f;
+    [SerializeField] private float deceleration = 8f;
+
+    private float currentForward;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -97,9 +103,31 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float speed = forward > 0 ? speedForward : speedBackward;
-        this.rigidbody.AddForce(this.transform.forward * forward * speed * 10, ForceMode.Acceleration);
+        float targetSpeed = forward > 0f
+            ? forward * speedForward
+            : forward * speedBackward;
 
+        float currentSpeed = Vector3.Dot(
+            this.rigidbody.linearVelocity,
+            this.transform.forward
+        );
+
+        float accelerationRate = Mathf.Abs(forward) > 0.01f
+            ? acceleration
+            : deceleration;
+
+        float newSpeed = Mathf.MoveTowards(
+            currentSpeed,
+            targetSpeed,
+            accelerationRate * Time.fixedDeltaTime
+        );
+
+        float speedDelta = newSpeed - currentSpeed;
+
+        this.rigidbody.AddForce(
+            this.transform.forward * speedDelta,
+            ForceMode.VelocityChange
+        );
     }
 
     private void Boost()
@@ -154,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
             ReduceOrthogonalVelocity(normalOrthogonalReduction);
             return false;
         }
-        this.rigidbody.AddForce(this.transform.forward * forward * speedBackward * 10, ForceMode.Acceleration);
+        this.rigidbody.AddForce(-this.rigidbody.linearVelocity.normalized  * driftForce, ForceMode.Acceleration);
         ReduceOrthogonalVelocity(driftOrthogonalReduction);
 
         driftParticle.Emit(10);
