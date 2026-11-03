@@ -48,7 +48,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject controlsMenu;
     private int currentMapIndex = 0;
 
-    private int lapCount = 1;
+    private int lapCount = int.MaxValue;
+    private int lastLapCount = 3;
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(playMenuButton);
@@ -89,6 +90,9 @@ public class MenuManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(mapNameButton);
         playMenu.SetActive(true);
+        colors.normalColor = new Color(0.5f, 0f, 0f, 1f);
+        colors.selectedColor = new Color(0.8f, 0f, 0f, 1f);
+        lapCountButton.GetComponent<Button>().colors = colors;
     }
     private void changeNumberLap(int value)
     {
@@ -138,8 +142,8 @@ public class MenuManager : MonoBehaviour
 
         if (currentMapIndex == 0)
         {
-
-            lapCount = 1;
+            lastLapCount = lapCount;
+            lapCount = int.MaxValue;
             setLapCountText();
             colors.normalColor = new Color(0.5f, 0f, 0f, 1f);
             colors.selectedColor = new Color(0.8f, 0f, 0f, 1f);
@@ -147,9 +151,9 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            if (lapCount == 1)
+            if (lapCount == int.MaxValue)
             {
-                lapCount = 3;
+                lapCount = lastLapCount;
                 setLapCountText();
             }
             colors.normalColor = Color.black;
@@ -212,7 +216,14 @@ public class MenuManager : MonoBehaviour
             changeNumberLap(heldDirection);
         }
     }
-    private void setLapCountText() { lapCountText.text = lapCount.ToString(); }
+    private void setLapCountText()
+    {
+        if (lapCount == int.MaxValue) { lapCountText.text = "∞"; }
+        else
+        {
+            lapCountText.text = lapCount.ToString();
+        }
+    }
     private IEnumerator changeButtonColor(GameObject button, bool red)
     {
         Color color = new Color(125f / 255f, 120f / 255f, 43f / 255f, 1f);

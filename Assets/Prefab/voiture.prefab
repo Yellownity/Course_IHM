@@ -256,17 +256,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e10f549cdb314da432a172b96fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speedForward: 5
+  speedForward: 120
   speedBackward: 4
   speedTurn: 100
   maxSpeed: 30
   normalOrthogonalReduction: 0.8
   driftOrthogonalReduction: 0.99
+  driftForce: 0.6
   boostAmount: 100
   boostConsumption: 50
   boostForce: 30
   boostRechargeTime: 5
   boostParticle: {fileID: 3904391864700729512}
+  acceleration: 30
+  deceleration: 8
 --- !u!198 &5781877388896346058
 ParticleSystem:
   m_ObjectHideFlags: 0
