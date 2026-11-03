@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedForward;
     [SerializeField] float speedBackward;
     [SerializeField] float speedTurn;
-    [SerializeField] float maxSpeed;
     [SerializeField] float normalOrthogonalReduction;
     [SerializeField] float driftOrthogonalReduction;
     [SerializeField] private float driftForce;
@@ -66,11 +65,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public float GetMaxSpeed()
-    {
-        return maxSpeed;
-    }
-
     public float GetBoostAmount()
     {
         return boostAmount;
@@ -107,15 +101,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-
-
         Boost();
-
-        // on mets une limite de vitesse pour ne pas dépasser la vitesse max après le boost
-        if (this.rigidbody.linearVelocity.magnitude > maxSpeed)
-        {
-            return;
-        }
 
         float targetSpeed = forward > 0f
             ? forward * speedForward
