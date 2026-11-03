@@ -891,7 +891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZoomCamera
   mainCamera: {fileID: 330585545}
   playerMovement: {fileID: 8492430127568315781}
-  playerRigidbody: {fileID: 8492430127568315782}
 --- !u!1 &374683645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,6 +1771,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 883617422946352699, guid: 947ebf5980ee5fd4d8f63e9f74ad177f, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 8492430127568315781}
     - target: {fileID: 7113800471434650048, guid: 947ebf5980ee5fd4d8f63e9f74ad177f, type: 3}
       propertyPath: m_Name
       value: XR Origin (VR)
@@ -4008,11 +4011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e10f549cdb314da432a172b96fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!54 &8492430127568315782 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 6457866395200581370, guid: 6da7f6bb58e27b3429f8d96862096ef3, type: 3}
-  m_PrefabInstance: {fileID: 8492430127568315780}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
