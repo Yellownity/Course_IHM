@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float boostRechargeTime = 5f;
 
     [SerializeField] private ParticleSystem boostParticle;
-
     public static event EventHandler<float> changingBoostUIEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,6 +58,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Move();
         }
+    }
+
+    public float GetMaxSpeed()
+    {
+        return maxSpeed;
+    }
+
+    public float GetBoostAmount()
+    {
+        return boostAmount;
+    }
+
+    public bool IsBoosting()
+    {
+        return isBoosting;
     }
     public void putTurn(float input)
     {
