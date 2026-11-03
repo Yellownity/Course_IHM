@@ -69,7 +69,12 @@ public class UIManager : MonoBehaviour
 
     void ActualiseLapNumber()
     {
-        lapNumber.text = "Lap: " + lapsCompleted + "/" + totalLaps;
+        if (totalLaps == int.MaxValue)
+        {
+            lapNumber.text = "Lap: " + lapsCompleted + "/∞";
+        }
+        else
+            lapNumber.text = "Lap: " + lapsCompleted + "/" + totalLaps;
     }
 
     public void SetTotalTime(float time)
