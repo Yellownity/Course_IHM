@@ -9958,9 +9958,9 @@ MonoBehaviour:
   engineAudio: {fileID: 166756980718335356}
   boostAudio: {fileID: 4946066983020548810}
   driftAudio: {fileID: 2295697843808314182}
-  minPitch: 0.8
-  maxPitch: 1.5
-  fadeSpeed: 1.5
+  minPitch: 0.7
+  maxPitch: 1
+  fadeSpeed: 0.1
 --- !u!82 &166756980718335356
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9974,7 +9974,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 835efa50ad3138c4f8ac1efd6bb1b62d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10071,7 +10071,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: aaec1a8ac46d2134b84cd798e26e747b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10168,7 +10168,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 864441b3163ebcd44a740183a2ce397c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
