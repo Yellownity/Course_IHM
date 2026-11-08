@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CircuitVR.unity
     guid: 7e1314d2b94e74c4aa4bb0ea7695dffd
   - enabled: 1
-    path: Assets/Scenes/Circuit1.unity
+    path: Assets/Scenes/CircuitZigzag.unity
     guid: f4d04dc8cb176d44696d0bc917b41fb9
   - enabled: 1
     path: Assets/Scenes/CircuitBoost.unity
