@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem boostParticle;
     public static event EventHandler<float> changingBoostUIEvent;
     public static event EventHandler<float> changingRechargingTimeUIEvent;
+    public static event EventHandler playBoostSoundEvent;
+    public static event EventHandler playDriftSoundEvent;
 
     [SerializeField] private float acceleration = 5f;
     [SerializeField] private float deceleration = 8f;
@@ -141,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
             );
 
             boostParticle.Emit(10);
+            playBoostSoundEvent?.Invoke(this, EventArgs.Empty);
 
             boostAmount -= boostConsumption * Time.fixedDeltaTime;
             boostAmount = Mathf.Max(boostAmount, 0f);
@@ -189,6 +192,7 @@ public class PlayerMovement : MonoBehaviour
         }
         this.rigidbody.AddForce(-this.rigidbody.linearVelocity  * driftForce, ForceMode.Acceleration);
         ReduceOrthogonalVelocity(driftOrthogonalReduction);
+        playDriftSoundEvent?.Invoke(this, EventArgs.Empty);
 
         if (canRechargeBoost)
         {

@@ -1,9 +1,12 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource engineAudio;
     [SerializeField] private AudioSource boostAudio;
+    [SerializeField] private AudioSource driftAudio;
     [SerializeField] private float minPitch = 0.8f;
     [SerializeField] private float maxPitch = 1.5f;
     [SerializeField] private float fadeSpeed = 1.5f;
@@ -11,13 +14,35 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         engineAudio.Stop();
+        boostAudio.Stop();
+        driftAudio.Stop();
     }
 
-    public void PlayBoostSound()
+    private void OnEnable()
+    {
+        PlayerMovement.playBoostSoundEvent += HandleBoostSound;
+        PlayerMovement.playDriftSoundEvent += HandleDriftSound;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMovement.playBoostSoundEvent -= HandleBoostSound;
+        PlayerMovement.playDriftSoundEvent -= HandleDriftSound;
+    }   
+
+    public void HandleBoostSound(object sender, EventArgs args)
     {
         if (!boostAudio.isPlaying)
         {
             boostAudio.Play();
+        }
+    }
+
+    public void HandleDriftSound(object sender, EventArgs args)
+    {
+        if (!driftAudio.isPlaying)
+        {
+            driftAudio.Play();
         }
     }
 
