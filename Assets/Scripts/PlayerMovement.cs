@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private ParticleSystem boostParticle;
     public static event EventHandler<float> changingBoostUIEvent;
+    public static event EventHandler<float> changingRechargingTimeUIEvent;
 
     [SerializeField] private float acceleration = 5f;
     [SerializeField] private float deceleration = 8f;
@@ -152,6 +153,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 canRechargeBoost = false;
                 StartCoroutine(StopRechargingTime());
+                if (changingRechargingTimeUIEvent != null)
+                {
+                    changingRechargingTimeUIEvent(this, boostRechargeTime);
+                }
             }
         }
     }

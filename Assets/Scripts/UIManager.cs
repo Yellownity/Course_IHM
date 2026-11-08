@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalTimeText;
     [SerializeField] private TextMeshProUGUI bestLapTotalTimeText;
 
+    [SerializeField] private TextMeshProUGUI stopRechargingTimeText;
+
     private float bestLapTime;
     private float totalTime;
 
@@ -32,12 +34,14 @@ public class UIManager : MonoBehaviour
     {
         LapManager.onLapFinishedEvent += HandleLapFinished;
         PlayerMovement.changingBoostUIEvent += HandleBoost;
+        PlayerMovement.changingRechargingTimeUIEvent += HandleRechargingTime;
         InputController.onPauseEvent += HandlePause;
     }
     private void OnDisable()
     {
         LapManager.onLapFinishedEvent -= HandleLapFinished;
         PlayerMovement.changingBoostUIEvent -= HandleBoost;
+        PlayerMovement.changingRechargingTimeUIEvent -= HandleRechargingTime;
         InputController.onPauseEvent -= HandlePause;
     }
 
@@ -55,6 +59,24 @@ public class UIManager : MonoBehaviour
         ActualiseLapNumber();
     }
 
+    void HandleRechargingTime(object sender, float rechargingTime)
+    {
+        StartCoroutine(CountDown(rechargingTime));
+    }
+
+
+    IEnumerator CountDown(float rechargingTime)
+    {
+        stopRechargingTimeText.gameObject.SetActive(true);
+        float timeLeft = rechargingTime;
+        while (timeLeft > 0)
+        {
+            stopRechargingTimeText.text = timeLeft.ToString("F2") + "s";
+            timeLeft -= Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+        stopRechargingTimeText.gameObject.SetActive(false);
+    }
 
 
     void HandleBoost(object sender, float boostAmount)

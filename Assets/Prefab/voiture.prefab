@@ -265,7 +265,7 @@ MonoBehaviour:
   boostAmount: 100
   boostConsumption: 50
   boostForce: 30
-  boostRechargeTime: 5
+  boostRechargeTime: 4
   boostParticle: {fileID: 3904391864700729512}
   acceleration: 30
   deceleration: 8
