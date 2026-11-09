@@ -25,4 +25,8 @@ public class Checkpoint : MonoBehaviour
             onCheckpointEvent(this, checkpointID);
         }
     }
+    public int GetCheckpointID()
+    {
+        return checkpointID;
+    }
 }

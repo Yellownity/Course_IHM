@@ -19,11 +19,11 @@ public class TimeManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        Checkpoint.onCheckpointEvent += HandleCheckpointReached;
+        LapManager.onCheckpointEvent += HandleCheckpointReached;
     }
     private void OnDisable()
     {
-        Checkpoint.onCheckpointEvent -= HandleCheckpointReached;
+        LapManager.onCheckpointEvent -= HandleCheckpointReached;
     }
 
     // Update is called once per frame
@@ -43,9 +43,9 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private void HandleCheckpointReached(object sender, int checkpointID)
+    private void HandleCheckpointReached(object sender, GameObject checkpoint)
     {
-
+        int checkpointID = checkpoint.GetComponent<Checkpoint>().GetCheckpointID();
         float checkpointTime = timer - startLapTime;
         if (checkpointTimes.Count <= checkpointID)
         {
