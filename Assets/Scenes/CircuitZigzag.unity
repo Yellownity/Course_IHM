@@ -1080,6 +1080,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3385052530861747202, guid: 3ccb5eb9697f7494f9a2a05b9e2d15ac, type: 3}
+      propertyPath: m_Size.x
+      value: 19.72648
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385052530861747202, guid: 3ccb5eb9697f7494f9a2a05b9e2d15ac, type: 3}
+      propertyPath: m_Center.x
+      value: -3.4308689
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385052530861747202, guid: 3ccb5eb9697f7494f9a2a05b9e2d15ac, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291353124906914842, guid: 3ccb5eb9697f7494f9a2a05b9e2d15ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.45
+      objectReference: {fileID: 0}
     - target: {fileID: 8831973620482305145, guid: 3ccb5eb9697f7494f9a2a05b9e2d15ac, type: 3}
       propertyPath: m_Name
       value: LapManager (1)
