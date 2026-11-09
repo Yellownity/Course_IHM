@@ -43,25 +43,22 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private void HandleCheckpointReached(object sender, GameObject checkpoint)
+    private void HandleCheckpointReached(object sender, int checkpointID)
     {
-        int checkpointID = checkpoint.GetComponent<Checkpoint>().GetCheckpointID();
+        if (checkpointID < 0)
+            return;
+
         float checkpointTime = timer - startLapTime;
-        if (checkpointTimes.Count <= checkpointID)
+        while (checkpointTimes.Count <= checkpointID)
         {
-            for (int i = checkpointTimes.Count; i < checkpointID; i++)
-            {
-                checkpointTimes.Add(float.MaxValue);
-            }
-            checkpointTimes.Add(checkpointTime);
+            checkpointTimes.Add(float.MaxValue);
         }
-        else
+        checkpointTimes[checkpointID] = checkpointTime;
+        if (checkpointID < bestCheckpointTimes.Count)
         {
-            checkpointTimes[checkpointID] = checkpointTime;
-        }
-        if (bestCheckpointTimes.Count != 0)
-        {
-            float differenceTime = checkpointTime - bestCheckpointTimes[checkpointID];
+            float differenceTime =
+                checkpointTime - bestCheckpointTimes[checkpointID];
+
             uiManager.SetDifferenceTime(differenceTime);
         }
 
@@ -76,7 +73,8 @@ public class TimeManager : MonoBehaviour
                 bestCheckpointTimes = new List<float>(checkpointTimes);
                 uiManager.SetBestLapTime(bestLapTime);
             }
-            startLapTime = timer; 
+            startLapTime = timer;
+            checkpointTimes.Clear();
         }
     }
 

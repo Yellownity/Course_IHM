@@ -10,7 +10,7 @@ public class LapManager : MonoBehaviour
     private int currentCheckpoint = 0;
     private int totalCheckpoints;
 
-    public static event EventHandler<GameObject> onCheckpointEvent;
+    public static event EventHandler<int> onCheckpointEvent;
 
     public static event EventHandler onLapFinishedEvent;
 
@@ -28,10 +28,6 @@ public class LapManager : MonoBehaviour
     void Start()
     {
         totalCheckpoints = checkpoints.Count;
-        if (onCheckpointEvent != null)
-        {
-            onCheckpointEvent(this, checkpoints[1]);
-        }
     }
 
     // Update is called once per frame
@@ -48,8 +44,7 @@ public class LapManager : MonoBehaviour
             currentCheckpoint = nextCheckpoint;
             if(onCheckpointEvent != null)
             {
-                int nextCheckpointIndex = (currentCheckpoint + 1) % totalCheckpoints;
-                onCheckpointEvent(this, checkpoints[nextCheckpointIndex]);
+                onCheckpointEvent(this, currentCheckpoint);
             }
             if (currentCheckpoint == 0 && onLapFinishedEvent != null)
             {
